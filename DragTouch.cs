@@ -9,8 +9,10 @@ public class DragTouch : MonoBehaviour
     {
         if (Input.GetTouch(0).phase == TouchPhase.Began)
         {
-            Vector3 touchPos = Input.GetTouch(0).position;
-            gameObject.transform.position = touchPos;
+            Touch touch = Input.GetTouch(0);
+		        Vector3 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
+			      touchPosition.z = 0f;
+			      transform.position = touchPosition;
         }
         else if (Input.GetTouch(0).phase == TouchPhase.Ended)
         {
